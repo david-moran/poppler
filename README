@@ -1,0 +1,5 @@
+Kernel variables to change:
+kernel.pid_max=4194303
+net.netfilter.nf_conntrack_tcp_timeout_syn_sent=60
+net.netfilter.nf_conntrack_tcp_timeout_syn_recv=30
+net.netfilter.nf_conntrack_max=2900000000
