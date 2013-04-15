@@ -48,5 +48,4 @@ export function check(host: string, port: number) {
     });
 
     request.on('error', function(e){});
-
 };

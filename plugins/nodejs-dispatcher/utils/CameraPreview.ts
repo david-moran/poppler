@@ -41,6 +41,7 @@ export class CameraPreview {
 	__getHTMLCameraItems(cModels) : string{
 		var html = "";
 
+        /* TODO: .reverse().slice() no parece la forma más óptima de hacer esto... */
 		for(var i in cModels.reverse().slice(0, 500)){
 			var model = cModels[i];
 			html = html +
