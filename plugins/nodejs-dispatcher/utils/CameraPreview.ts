@@ -33,7 +33,7 @@ export class CameraPreview {
 
 		var cameraModel = mongoose.model("Camera");
 
-		cameraModel.find(function(e, cModels){
+		cameraModel.sort.('-id').limit(500).exec(function(e, cModels){
 			callback(cModels);
 		})
 	}
@@ -42,7 +42,7 @@ export class CameraPreview {
 		var html = "";
 
         /* TODO: .reverse().slice() no parece la forma más óptima de hacer esto... */
-		for(var i in cModels.reverse().slice(0, 500)){
+		for(var i in cModels){
 			var model = cModels[i];
 			html = html +
 				"<div style='float:left;width:350px'><a href='http://"+ model.host + ":" + model.port + "'>" +
