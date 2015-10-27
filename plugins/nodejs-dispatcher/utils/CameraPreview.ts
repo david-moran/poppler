@@ -33,7 +33,7 @@ export class CameraPreview {
 
 		var cameraModel = mongoose.model("Camera");
 
-		cameraModel.sort.('-id').limit(500).exec(function(e, cModels){
+		cameraModel.find({}).sort('-id').limit(500).exec(function(e, cModels){
 			callback(cModels);
 		})
 	}

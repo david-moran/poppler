@@ -1,5 +1,5 @@
 all:
-	find -name '*.ts' -type f -exec tsc {} ';'
+	find -name '*.ts' -type f -exec tsc -m commonjs {} ';'
 
 .PHONY: clean
 clean:

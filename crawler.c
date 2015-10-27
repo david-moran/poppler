@@ -310,14 +310,20 @@ struct crawler_message *
 crawler_message_pop(const struct crawler *crawler) {
     struct crawler_message *message;
 
+#ifdef DEBUG
+	printf("[%s:%d] Popping a message from the queue\n", __FILE__, __LINE__);
+#endif
     /* Critical section */
     sem_wait(&crawler->shared->sem);
     if (crawler->shared->message_pos == 0) {
+#ifdef DEBUG
+		printf("[%s:%d] No new messages\n", __FILE__, __LINE__);
+#endif
         sem_post(&crawler->shared->sem);
         return NULL;
     }
 
-    message = (struct crawler_message *) malloc(sizeof(struct crawler_message));
+   message = (struct crawler_message *) malloc(sizeof(struct crawler_message));
     memcpy(message, &crawler->shared->message[crawler->shared->message_pos-1],
         sizeof(struct crawler_message));
 
@@ -326,5 +332,9 @@ crawler_message_pop(const struct crawler *crawler) {
     sem_post(&crawler->shared->sem);
     /*********************/
 
+#ifdef DEBUG
+		printf("[%s:%d] New message found\n", __FILE__, __LINE__);
+#endif
+ 
     return message;
 }

@@ -1,8 +1,8 @@
-import dispatcher = module("./base/dispatcher");
-import config = module("./config");
-import mongo = module("./persistence/mongo");
+import dispatcher = require("./base/dispatcher");
+import config = require("./config");
+import mongo = require("./persistence/mongo");
 
-import CameraPreview = module("./utils/CameraPreview");
+import CameraPreview = require("./utils/CameraPreview");
 
 mongo.start(function(db){
 	var d = new dispatcher.Dispatcher('127.0.0.1', 2030);

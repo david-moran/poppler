@@ -1,6 +1,6 @@
 ///<reference path="../node/node.d.ts" />
 
-import http = module("http");
+import http = require("http");
 
 var cameraModel = require("mongoose").model("Camera");
 

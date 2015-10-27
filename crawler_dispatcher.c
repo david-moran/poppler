@@ -26,6 +26,9 @@ static void *dispatcher_start(void *);
 static void crawler_dispatcher_modules_free();
 
 void crawler_dispatcher_start(struct crawler *crawler) {
+#ifdef DEBUG
+    printf("[%s:%d] Starting dispatcher thread\n", __FILE__, __LINE__);
+#endif
     pthread_t thid;
     pthread_create(&thid, NULL, dispatcher_start, crawler);
     pthread_detach(thid);
@@ -39,9 +42,18 @@ static void *dispatcher_start(void *user) {
     struct plugin *plugin;
 
     while (1) {
+#ifdef DEBUG
+		printf("[%s:%d] Dispatcher waiting for a message\n", __FILE__, __LINE__);
+#endif
         while ((message = crawler_message_pop(crawler)) != NULL) {
+#ifdef DEBUG
+			printf("[%s:%d] Processing message\n", __FILE__, __LINE__);
+#endif
             module = crawler->path[message->path_ndx]->module.name;
             if (module != NULL) {
+#ifdef DEBUG
+				printf("[%s:%d] Sending message to module %s\n", __FILE__, __LINE__, module);
+#endif
                 item.key = module;                
                 if(hsearch_r(item, FIND, &retval, 
                     &hsearch_data) != 0) {

@@ -1,6 +1,6 @@
 ///<reference path="../node/node.d.ts" />
 
-import net = module('net');
+import net = require('net');
 
 var plugins = {};
 
